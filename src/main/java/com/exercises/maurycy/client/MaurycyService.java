@@ -1,5 +1,7 @@
 package com.exercises.maurycy.client;
 
+import java.util.Map;
+
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -8,5 +10,5 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
  */
 @RemoteServiceRelativePath("greet")
 public interface MaurycyService extends RemoteService {
-  String inspectString(String name) throws IllegalArgumentException;
+	Map<Character, Integer> inspectString(String name) throws IllegalArgumentException;
 }

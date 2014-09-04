@@ -1,5 +1,7 @@
 package com.exercises.maurycy.client;
 
+import java.util.Map;
+
 import com.exercises.maurycy.shared.FieldVerifier;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -121,7 +123,7 @@ public class inspector implements EntryPoint {
 				sendButton.setEnabled(false);
 				textToServerLabel.setText(textToServer);
 				serverResponseLabel.setText("");
-				mjsService.inspectString(textToServer, new AsyncCallback<String>() {
+				mjsService.inspectString(textToServer, new AsyncCallback<Map<Character, Integer>>() {
 					public void onFailure(Throwable caught) {
 						// Show the RPC error message to the user
 						dialogBox.setText("Remote Procedure Call - Failure");
@@ -131,10 +133,15 @@ public class inspector implements EntryPoint {
 						closeButton.setFocus(true);
 					}
 
-					public void onSuccess(String result) {
+					public void onSuccess(Map<Character, Integer> result) {
 						dialogBox.setText("Results");
 						serverResponseLabel.removeStyleName("serverResponseLabelError");
-						serverResponseLabel.setHTML(result);
+
+						final StringBuffer resultFormatted = new StringBuffer();
+						for (Character c : result.keySet()) {
+							resultFormatted.append(c + ": " + result.get(c) + "\n");
+						}
+						serverResponseLabel.setHTML(resultFormatted.toString());
 						dialogBox.center();
 						closeButton.setFocus(true);
 					}
