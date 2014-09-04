@@ -1,0 +1,2 @@
+serviceClass: com.exercises.maurycy.client.MaurycyService
+path: AA441CA56483B3929457A9F7BCB8604A.gwt.rpc
